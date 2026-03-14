@@ -1,0 +1,160 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&family=Outfit:wght@300;400;500;600;700;800;900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 240 20% 2%;
+    --foreground: 248 100% 96%;
+
+    --card: 240 20% 8%;
+    --card-foreground: 248 100% 96%;
+
+    --popover: 240 20% 6%;
+    --popover-foreground: 248 100% 96%;
+
+    --primary: 43 55% 54%;
+    --primary-foreground: 240 20% 3%;
+
+    --primary-bright: 43 68% 66%;
+    --primary-dim: 43 50% 36%;
+    --primary-glow: 43 55% 54% / 0.15;
+    --primary-glow-strong: 43 55% 54% / 0.25;
+
+    --secondary: 240 15% 10%;
+    --secondary-foreground: 248 100% 96%;
+
+    --muted: 240 12% 12%;
+    --muted-foreground: 240 10% 56%;
+
+    --accent: 240 12% 15%;
+    --accent-foreground: 248 100% 96%;
+
+    --destructive: 348 73% 57%;
+    --destructive-foreground: 248 100% 96%;
+    --destructive-dim: 348 73% 57% / 0.12;
+
+    --emerald: 156 86% 45%;
+    --emerald-dim: 156 86% 45% / 0.12;
+
+    --sapphire: 215 100% 65%;
+    --sapphire-dim: 215 100% 65% / 0.12;
+
+    --amber: 38 92% 50%;
+    --amber-dim: 38 92% 50% / 0.12;
+
+    --border: 240 15% 18%;
+    --border-bright: 240 12% 25%;
+    --input: 240 15% 18%;
+    --ring: 43 55% 54%;
+
+    --radius: 0.75rem;
+
+    --text-primary: 248 100% 96%;
+    --text-secondary: 240 12% 63%;
+    --text-dim: 240 14% 41%;
+
+    --surface: 240 18% 10%;
+    --raised: 240 16% 13%;
+    --deep: 240 20% 5%;
+    --void: 240 20% 2%;
+    --abyss: 240 22% 3%;
+
+    --sidebar-background: 240 22% 3%;
+    --sidebar-foreground: 240 5% 65%;
+    --sidebar-primary: 43 55% 54%;
+    --sidebar-primary-foreground: 240 20% 3%;
+    --sidebar-accent: 240 12% 15%;
+    --sidebar-accent-foreground: 248 100% 96%;
+    --sidebar-border: 240 15% 18%;
+    --sidebar-ring: 43 55% 54%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-body antialiased;
+    overflow-x: hidden;
+  }
+
+  #root {
+    @apply flex flex-col w-full min-h-screen overflow-x-hidden;
+  }
+
+  ::-webkit-scrollbar { width: 4px; height: 4px; }
+  ::-webkit-scrollbar-track { background: hsl(var(--abyss)); }
+  ::-webkit-scrollbar-thumb { background: hsl(var(--border)); border-radius: 2px; }
+  ::-webkit-scrollbar-thumb:hover { background: hsl(var(--primary) / 0.3); }
+
+  input, select, textarea { color-scheme: dark; }
+
+  ::selection {
+    background: hsl(var(--primary-glow));
+    color: hsl(var(--primary-bright));
+  }
+}
+
+@layer utilities {
+  .gold-shimmer {
+    background: linear-gradient(90deg, hsl(var(--primary)), hsl(var(--primary-bright)), hsl(var(--primary)), hsl(var(--primary-bright)));
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: textShimmer 3s linear infinite;
+  }
+
+  .glass {
+    background: hsl(var(--surface) / 0.7);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+  }
+}
+
+/* Animations */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes slideRight {
+  from { opacity: 0; transform: translateX(30px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.94); }
+  to { opacity: 1; transform: scale(1); }
+}
+@keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+@keyframes shimmer {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+@keyframes floatBob {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-8px); }
+}
+@keyframes glowPulse {
+  0%, 100% { box-shadow: 0 0 20px hsl(var(--primary-glow)), 0 0 40px transparent; }
+  50% { box-shadow: 0 0 40px hsl(var(--primary-glow-strong)), 0 0 80px hsl(var(--primary-glow)); }
+}
+@keyframes orbFloat {
+  0% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(30px, -20px) scale(1.05); }
+  66% { transform: translate(-20px, 15px) scale(0.97); }
+  100% { transform: translate(0, 0) scale(1); }
+}
+@keyframes textShimmer {
+  0% { background-position: 0% center; }
+  100% { background-position: 200% center; }
+}
+@keyframes countUp {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
